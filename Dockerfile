@@ -1,4 +1,7 @@
 FROM python:3.11-slim
 WORKDIR /app
-COPY . .
-CMD ["python", "server.py"]
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY server.py .
+EXPOSE 8000
+ENTRYPOINT ["python", "server.py"]
